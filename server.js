@@ -6,7 +6,8 @@ app.use(express.static("TLG")); // myApp will be the same folder name.
 app.get('/', function (req, res,next) {
  res.redirect('/'); 
 });
-app.listen(3000, 'https://kasturikannada.herokuapp.com');
+app.listen(process.env.PORT || 8080);
+// app.listen(3000, 'https://kasturikannada.herokuapp.com');
 // app.listen(3000,() => {
 // console.log("Server running at port on port 3000");
 // });
