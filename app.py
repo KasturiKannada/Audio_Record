@@ -14,7 +14,7 @@ cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 
 @app.route('/store_file', methods=['POST'])
-@crossdomain(origin='*',headers=['access-control-allow-origin','Content-Type'])
+@crossdomain(origin='http://kasturikannada.herokuapp.com',headers=['access-control-allow-origin','Content-Type'])
 def store_file():
     OUTPUT_FOLDER = "Audio_Files"
     language = request.json['language']    
