@@ -14,7 +14,7 @@ cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 
 @app.route('/store_file', methods=['POST'])
-@cross_origin()
+@crossdomain(origin='*',headers=['access-control-allow-origin','Content-Type'])
 def store_file():
     OUTPUT_FOLDER = "Audio_Files"
     language = request.json['language']    
