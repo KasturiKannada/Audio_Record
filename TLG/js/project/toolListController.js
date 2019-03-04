@@ -97,18 +97,14 @@ $scope.submit=function() {
     // base64data = base64data.replace('data:audio/x-mpeg-3;base64,', '');
     // console.log(base64data);
     // fd.append('file', base64data, 'audio.mp3');
-    $.ajaxSetup({
-        xhrFields: {
-           withCredentials: true
-        },
-        crossDomain: true,
-    });
+
     $.ajax({
       type: 'POST',
       // url: "http://127.0.0.1:5000/store_file?language="+ base64data +"&topic="+$scope.topic+"&index="+$scope.index,
       url: "https://audiosave.herokuapp.com/store_file",
       data: JSON.stringify({'language':base64data,'topic':$scope.topic,'index':$scope.index}),
       cache: false,
+      crossDomain: true,
       processData: false,
      contentType: "application/json",
         dataType: 'json',
