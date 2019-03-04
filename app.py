@@ -1,6 +1,4 @@
-#!flask/bin/python
 from flask import Flask, jsonify
-# from flask import Flask, abort, request 
 from flask import Flask, render_template, request, redirect, Response,abort
 from flask_cors import CORS, cross_origin
 import json
@@ -11,9 +9,10 @@ import time
 
 app = Flask(__name__)
 
-cors = CORS(app, resources={"*": {"origins": "*"}})
+cors = CORS(app, support_credentials=True)
 
 @app.route('/store_file', methods=['POST'])
+@cross_origin(supports_credentials=True)
 def store_file():
     OUTPUT_FOLDER = "Audio_Files"
     language = request.json['language']    
