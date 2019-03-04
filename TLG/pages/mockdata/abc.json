@@ -1,11 +1,75 @@
 {
   "data" : [ {
-    "text":"‎ಪಬ್ಲಿಕ್ ಟಿವಿ · ‎ವಿಜಯ ಕರ್ನಾಟಕ · ‎ವಿಜಯವಾಣಿ · ‎ಪ್ರಜಾವಾಣಿ",
-    "topic":"news",
+    "text":"‎ಖಂಡಿತ ಅಲ್ಲ",
+    "topic":"smalltalk",
     "index":1
     }, {
-     "text":"I am Good",
+     "text":"ಕನ್ನಡ ಚಿತ್ರ ಅತ್ಯುತ್ತಮ ಪ್ರಾದೇಶಿಕ ಚಲನಚಿತ್ರ ಪ್ರಶಸ್ತಿ ಗಿಟ್ಟಿಸಿಕೊಂಡಿದೆ",
      "topic":"news",
      "index":2
-     } ]
+     },{
+    "text":"‎ಇವುಗಳಲ್ಲಿ ಯಾವುದು ಅಲ್ಲ",
+    "topic":"smalltalk",
+    "index":3
+    }, 
+    {
+     "text":"ಶುಭೋದಯ",
+     "topic":"smalltalk",
+     "index":4
+     },{
+    "text":"‎ನಮಸ್ಕಾರ ಗುರು",
+    "topic":"smalltalk",
+    "index":5
+    }, 
+    {
+     "text":"ನಮಸ್ತೆ ಬಾಸ್",
+     "topic":"smalltalk",
+     "index":6
+     },{
+    "text":"ಮತ್ತೆ ಸಿಗುವ",
+    "topic":"smalltalk",
+    "index":7
+    }, 
+    {
+     "text":"ಹೋಗಿ ಬರ್ತೀನಿ",
+     "topic":"smalltalk",
+     "index":8
+     },{    
+     "text":"‎ತುಂಬಾ ಧನ್ಯವಾದಗಳು",
+    "topic":"smalltalk",
+    "index":9
+    }, 
+    {
+     "text":"ನನಗೆ ಕೆಲಸ ಬೇಕು",
+     "topic":"smalltalk",
+     "index":10
+     },{
+    "text":"ನಂಗೆ ನಿಮ್ಮಲ್ಲಿ ಕೆಲಸ ಸಿಗಬಹುದೇ‎",
+    "topic":"smalltalk",
+    "index":11
+    }, 
+    {
+     "text":"ದಯವಿಟ್ಟು ಸಹಾಯ ಮಾಡಿ",
+     "topic":"smalltalk",
+     "index":12
+     },{
+    "text":"‎ನನಗೆ ಸಹಾಯ ಮಾಡಬಲ್ಲಿರ",
+    "topic":"smalltalk",
+    "index":13
+    }, 
+    {
+     "text":"ನಿಮ್ಮ ಬಗ್ಗೆ ತಿಳಿದುಕೊಳ್ಳುವ ಕುತೂಹಲ ಇದೆ",
+     "topic":"news",
+     "index":14
+     },
+    {
+     "text":"ಬರ್ತಿನ್ರಿ",
+     "topic":"smalltalk",
+     "index":15
+     },{
+    "text":"‎ನಮಸ್ತೆ",
+    "topic":"smalltalk",
+    "index":16
+    }
+]
 }

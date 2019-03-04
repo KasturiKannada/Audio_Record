@@ -74,7 +74,7 @@ $scope.startRecording=function () {
    $scope.showimage=true;
   startRecord.disabled = true;
   stopRecord.disabled = false;
-  
+  cancelRecord.disabled = false;
   audio = [];
   recordedAudio.controls = false;
   rec.start();
@@ -99,20 +99,44 @@ $scope.submit=function() {
     // fd.append('file', base64data, 'audio.mp3');
     $.ajax({
       type: 'POST',
-      url: "http://127.0.0.1:5000/store_file?language="+ base64data +"&topic="+$scope.topic+"&index="+$scope.index,
-      // data: {"language":"wewevwe"},
+      // url: "http://127.0.0.1:5000/store_file?language="+ base64data +"&topic="+$scope.topic+"&index="+$scope.index,
+      url: "http://127.0.0.1:5000/store_file",
+      data: JSON.stringify({'language':base64data,'topic':$scope.topic,'index':$scope.index}),
+      cache: false,
       cache: false,
       processData: false,
-      contentType: false,
-      enctype: 'multipart/form-data'
+     contentType: "application/json",
+        dataType: 'json',
     }).done(function(data) {
-      alertify.success("audio saved succesfully..");
+      alertify.success("audio saved successfully..");
        stopRecord.disabled = true;
   submitRecord.disabled = true;
   cancelRecord.disabled = true;
   recordedAudio.controls = false;
   $scope.initialize();
     });
+     alertify.success("audio saved successfully..");
+       stopRecord.disabled = true;
+  submitRecord.disabled = true;
+  cancelRecord.disabled = true;
+  recordedAudio.controls = false;
+  $scope.initialize();
+//     $.ajax({
+//   url: "http://127.0.0.1:5000/store_file",
+//       data: JSON.stringify({'language':base64data,'topic':$scope.topic,'index':$scope.index}),
+//       cache: false,
+//   type: 'POST',
+//   traditional: true,
+//  contentType: "application/json",
+//         dataType: 'json',
+// }).done(function(data) {
+//       alertify.success("audio saved succesfully..");
+//        stopRecord.disabled = true;
+//   submitRecord.disabled = true;
+//   cancelRecord.disabled = true;
+//   recordedAudio.controls = false;
+//   $scope.initialize();
+//     });
   }
 }
 $scope.cancelaudio=function(){
@@ -174,20 +198,23 @@ $scope.initialize = function() {
  console.log("getUserMedia not supported");
 }
   $scope.timeLimit = 10;
-  var randomNumber = Math.floor(Math.random() * 101)
+  var randomNumber = Math.floor(Math.random() * 16)
   $http({
     url: "/pages/mockdata/abc.json",
     method: "GET",
     headers: {'Content-Type':'application/json','Accept':'application/json',"Authorization":dataService.getUserToken()}
   }).then(function(response) {
     $scope.datalist=response.data.data;
-    angular.forEach(response.data.data, function(tool,index){
-      if(index===0){
-        $scope.text=tool.text;
-        $scope.index=tool.index;
-        $scope.topic=tool.topic;
-      }
-    });
+      $scope.text= $scope.datalist[randomNumber].text;
+        $scope.index=$scope.datalist[randomNumber].index;
+        $scope.topic=$scope.datalist[randomNumber].topic;
+    // angular.forEach(response.data.data, function(tool,index){
+    //   if(index===0){
+    //     $scope.text=tool.text;
+    //     $scope.index=tool.index;
+    //     $scope.topic=tool.topic;
+    //   }
+    // });
   }, 
   function(error){
     if(error.status===401){
