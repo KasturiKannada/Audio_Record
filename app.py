@@ -8,11 +8,9 @@ import os.path
 import time
 
 app = Flask(__name__)
-
-cors = CORS(app, support_credentials=True)
+CORS(app)
 
 @app.route('/store_file', methods=['POST'])
-@cross_origin(supports_credentials=True)
 def store_file():
     OUTPUT_FOLDER = "Audio_Files"
     language = request.json['language']    
