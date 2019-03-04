@@ -10,11 +10,10 @@ import os.path
 import time
 
 app = Flask(__name__)
-cors = CORS(app)
-app.config['CORS_HEADERS'] = 'Content-Type'
+
+cors = CORS(app, resources={r”/api/*”: {“origins”: “*”}})
 
 @app.route('/store_file', methods=['POST'])
-@crossdomain(origin='http://kasturikannada.herokuapp.com/store_file',headers=['access-control-allow-origin','Content-Type'])
 def store_file():
     OUTPUT_FOLDER = "Audio_Files"
     language = request.json['language']    
