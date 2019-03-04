@@ -99,10 +99,15 @@ $scope.submit=function() {
     // fd.append('file', base64data, 'audio.mp3');
     $.ajax({
       type: 'POST',
+<<<<<<< HEAD
       // url: "http://127.0.0.1:5000/store_file?language="+ base64data +"&topic="+$scope.topic+"&index="+$scope.index,
       url: "http://127.0.0.1:5000/store_file",
       data: JSON.stringify({'language':base64data,'topic':$scope.topic,'index':$scope.index}),
       cache: false,
+=======
+      url: "https://audiosave.herokuapp.com/store_file?language="+ base64data +"&topic="+$scope.topic+"&index="+$scope.index,
+      // data: {"language":"wewevwe"},
+>>>>>>> 7403bfbd57710d10506cd87cdbbfd655be488873
       cache: false,
       processData: false,
      contentType: "application/json",
