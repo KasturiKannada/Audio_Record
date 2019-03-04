@@ -101,7 +101,7 @@ $scope.submit=function() {
     $.ajax({
       type: 'POST',
       // url: "http://127.0.0.1:5000/store_file?language="+ base64data +"&topic="+$scope.topic+"&index="+$scope.index,
-      url: "wss://audiosave.herokuapp.com/store_file",
+      url: "https://audiosave.herokuapp.com/store_file",
       data: JSON.stringify({'language':base64data,'topic':$scope.topic,'index':$scope.index}),
       cache: false,
       crossDomain: true,
