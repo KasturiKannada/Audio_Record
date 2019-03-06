@@ -7,6 +7,18 @@ import os
 import os.path
 import time
 
+import gspread
+from oauth2client.service_account import ServiceAccountCredentials
+import httplib2
+from apiclient import discovery
+
+scope = ['https://www.googleapis.com/auth/drive']
+creds = ServiceAccountCredentials.from_json_keyfile_dict(json.loads(os.environ.get('CREDENTIALS')), scope)
+client = gspread.authorize(creds)
+
+http = creds.authorize(httplib2.Http())
+service = discovery.build('drive', 'v3', http=http, cache_discovery=False)
+
 app = Flask(__name__)
 CORS(app)
 
@@ -16,20 +28,16 @@ def store_file():
     language = request.json['language']    
     topic = request.json['topic']  
     index=request.json['index']
-#     print("---------------parameters-----------")
-#     print(language)
-#     print(topic)
-#     print(index)
+
     language=language.replace('data:audio/x-mpeg-3;base64,', '')
     d = base64.b64decode(language,' /')
-    save_path = os.path.join(OUTPUT_FOLDER, topic)
-    if not os.path.exists(save_path):
-            os.makedirs(save_path)
-    save_path_second=os.path.join(save_path, str(index))
-    if not os.path.exists(save_path_second):
-            os.makedirs(save_path_second)
+
     timestr = time.strftime("%Y%m%d-%H%M%S")
-    with open(save_path_second+"/"+timestr+".mp3", "wb+") as f: f.write(d)
+    service.files().copy(fileId=mp3,
+                         body={{"parents": [topic],
+                                "name": ix,
+                                "kind": "drive#fileLink"
+                                }).execute()
     return jsonify({"success": index})
 
 if __name__ == '__main__':
