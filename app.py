@@ -7,30 +7,28 @@ import base64
 import os
 import os.path
 import time
+import redis
 
 app = Flask(__name__)
 CORS(app)
+
+redis_url = os.getenv('REDISTOGO_URL', 'redis://localhost:6379')
+redis = redis.from_url(redis_url)
 
 @app.route('/store_file', methods=['POST'])
 def store_file():
     OUTPUT_FOLDER = "Audio_Files"
     language = request.json['language']    
     topic = request.json['topic']  
-    index=request.json['index']
-#     print("---------------parameters-----------")
-#     print(language)
-#     print(topic)
-#     print(index)
+    ix = request.json['index']
+
     language=language.replace('data:audio/x-mpeg-3;base64,', '')
-    d = base64.b64decode(language,' /')
-    save_path = os.path.join(OUTPUT_FOLDER, topic)
-    if not os.path.exists(save_path):
-            os.makedirs(save_path)
-    save_path_second=os.path.join(save_path, str(index))
-    if not os.path.exists(save_path_second):
-            os.makedirs(save_path_second)
+    mp3 = base64.b64decode(language,' /')
+
     timestr = time.strftime("%Y%m%d-%H%M%S")
-    with open(save_path_second+"/"+timestr+".mp3", "wb+") as f: f.write(d)
+    redis.set("audio", mp3)
+    redis.set("topic", topic)
+    redis.set("idx", ix)
     return jsonify({"success": index})
 
 if __name__ == '__main__':
