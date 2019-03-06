@@ -116,12 +116,12 @@ $scope.submit=function() {
   recordedAudio.controls = false;
   $scope.initialize();
     });
-     alertify.success("audio saved successfully..");
-       stopRecord.disabled = true;
-  submitRecord.disabled = true;
-  cancelRecord.disabled = true;
-  recordedAudio.controls = false;
-  $scope.initialize();
+//      alertify.success("audio saved successfully..");
+//        stopRecord.disabled = true;
+//   submitRecord.disabled = true;
+//   cancelRecord.disabled = true;
+//   recordedAudio.controls = false;
+//   $scope.initialize();
 //     $.ajax({
 //   url: "http://127.0.0.1:5000/store_file",
 //       data: JSON.stringify({'language':base64data,'topic':$scope.topic,'index':$scope.index}),
