@@ -7,13 +7,23 @@ import base64
 import os
 import os.path
 import time
-import redis
+
+import gspread
+from oauth2client.service_account import ServiceAccountCredentials
+import httplib2
+from apiclient import discovery
+
+# use creds to create a client to interact with the Google Drive API
+scope = ['https://www.googleapis.com/auth/drive']
+creds = ServiceAccountCredentials.from_json_keyfile_dict(json.loads(os.environ.get('CREDENTIALS')), scope)
+client = gspread.authorize(creds)
+
+
+http = creds.authorize(httplib2.Http())
+service = discovery.build('drive', 'v3', http=http, cache_discovery=False)
 
 app = Flask(__name__)
 CORS(app)
-
-redis_url = os.getenv('REDISTOGO_URL', 'redis://localhost:6379')
-redis = redis.from_url(redis_url)
 
 @app.route('/store_file', methods=['POST'])
 def store_file():
@@ -26,9 +36,11 @@ def store_file():
     mp3 = base64.b64decode(language,' /')
 
     timestr = time.strftime("%Y%m%d-%H%M%S")
-    redis.set("audio", mp3)
-    redis.set("topic", topic)
-    redis.set("idx", ix)
+    service.files().copy(fileId=mp3,
+                         body={{"parents": [topic],
+                                "name": ix,
+                                "kind": "drive#fileLink"
+                                }).execute()
     return jsonify({"success": index})
 
 if __name__ == '__main__':
