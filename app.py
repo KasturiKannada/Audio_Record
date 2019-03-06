@@ -17,6 +17,10 @@ def store_file():
     language = request.json['language']    
     topic = request.json['topic']  
     index=request.json['index']
+    print("---------------parameters-----------")
+    print(language)
+    print(topic)
+    print(index)
     language=language.replace('data:audio/x-mpeg-3;base64,', '')
     d = base64.b64decode(language,' /')
     save_path = os.path.join(OUTPUT_FOLDER, topic)
