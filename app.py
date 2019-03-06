@@ -41,3 +41,5 @@ def store_file():
 #                                 "kind": "drive#fileLink"
 #                                 }).execute()
     return jsonify({"success": mp3})
+if __name__ == "__main__":
+   app.run(debug=True, port=33507) 
